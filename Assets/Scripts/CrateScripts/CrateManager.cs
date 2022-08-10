@@ -2,42 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadowCloneManager : MonoBehaviour
+public class CrateManager : MonoBehaviour
 {
 
-    public GameObject clonePrefab;
+    public GameObject cratePrefab;
     public List<Transform> allSpawnPoints = new List<Transform>();
-    public List<GameObject> allClones = new List<GameObject>();
+    public List<GameObject> allCrates = new List<GameObject>();
 
     private void OnEnable()
     {
-        CloneEvents.SpawnEvent += StartCloning;
-        CloneEvents.OnSpawnEvent += AddNewClone;
-        CloneEvents.OnDespawnEvent += RemoveClone;
+        CrateEvents.SpawnEvent += StartCloning;
+        CrateEvents.OnSpawnEvent += AddNewCrate;
     }
 
     private void OnDisable()
     {
-        CloneEvents.SpawnEvent -= StartCloning;
-        CloneEvents.OnSpawnEvent -= AddNewClone;
-        CloneEvents.OnDespawnEvent -= RemoveClone;
+        CrateEvents.SpawnEvent -= StartCloning;
+        CrateEvents.OnSpawnEvent -= AddNewCrate;
     }
 
     void StartCloning()
     {
         for (int i = 0; i < allSpawnPoints.Count; i++)
         {
-            Instantiate(clonePrefab, allSpawnPoints[i].position, allSpawnPoints[i].rotation);
+            Instantiate(cratePrefab, allSpawnPoints[i].position, allSpawnPoints[i].rotation);
         }
     }
 
-    void AddNewClone(GameObject cloneToAdd)
+    void AddNewCrate(GameObject crateToAdd)
     {
-        allClones.Add (cloneToAdd);
-    }
-
-    void RemoveClone(GameObject cloneToRemove)
-    {
-        allClones.Remove (cloneToRemove);
+        allCrates.Add (crateToAdd);
     }
 }

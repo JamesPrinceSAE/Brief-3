@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class TankHealth 
 {
     public float minHealth = 0; // our min health
-    public float maxHealth = 100; // our max health
+    public float maxHealth = 1000; // our max health
     private float currentHealth; // our current health
     public bool isDead = true; // is our character alive?
     public Color fullHealthColour = Color.green; // our full health colour

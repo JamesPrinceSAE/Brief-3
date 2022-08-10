@@ -67,4 +67,11 @@ public static class TankGameEvents
     /// Called when the round is reset
     /// </summary>
     public static VoidDelegate OnRoundResetEvent;
+
+    /// From this point on, any additional events are modified or new ones.
+
+    /// <summary>
+    /// Called whenever a health crate is applied to a tank
+    /// </summary>
+    public static TransformFloatDelegate OnObjectHealDamageEvent;
 }

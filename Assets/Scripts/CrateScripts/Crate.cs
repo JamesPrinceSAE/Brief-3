@@ -6,21 +6,21 @@ public class Crate : MonoBehaviour
 {
     private void OnEnable()
     {
-        CloneEvents.DespawnEvent += Death;
+        CrateEvents.DespawnEvent += Death;
     }
 
     private void OnDisable()
     {
-        CloneEvents.DespawnEvent -= Death;
+        CrateEvents.DespawnEvent -= Death;
     }
     void Start()
     {
-        CloneEvents.OnSpawnEvent?.Invoke(gameObject);
+        CrateEvents.OnSpawnEvent?.Invoke(gameObject);
     }
 
     private void Death()
     {
-        CloneEvents.OnDespawnEvent?.Invoke(gameObject);
+        CrateEvents.OnDespawnEvent?.Invoke(gameObject);
         Destroy(gameObject);
     }
 }

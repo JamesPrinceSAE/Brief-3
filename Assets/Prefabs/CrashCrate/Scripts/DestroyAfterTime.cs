@@ -6,7 +6,7 @@
     {
         private void Start()
         {
-            Invoke("DestroySelf", 3.0f);
+            Invoke("DestroySelf", 1.5f);
         }
 
         void DestroySelf()

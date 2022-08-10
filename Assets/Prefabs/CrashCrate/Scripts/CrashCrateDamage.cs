@@ -2,12 +2,12 @@
 {
     using UnityEngine;
 
-    public class CrashCrate : MonoBehaviour
+    public class CrashCrateDamage : MonoBehaviour
     {
         [Header("Whole Create")]
         public MeshRenderer wholeCrate;
         public BoxCollider boxCollider;
-        [Header("Fractured Create")]
+        [Header("Fractured Crate")]
         public GameObject fracturedCrate;
         [Header("Audio")]
         public AudioSource crashAudioClip;
