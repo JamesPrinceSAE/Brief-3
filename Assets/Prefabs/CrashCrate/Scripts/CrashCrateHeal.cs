@@ -11,6 +11,7 @@
         public GameObject fracturedCrate;
         [Header("Audio")]
         public AudioSource crashAudioClip;
+        public CrateSpawn myCrateSpawn;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -18,7 +19,8 @@
             boxCollider.enabled = false;
             fracturedCrate.SetActive(true);
             crashAudioClip.Play();
-
+            CrateSpawn myCrateSpawn = FindObjectOfType<CrateSpawn>();
+            myCrateSpawn.allCratesSpawnedIn.Remove(gameObject);
         }
 
         [ContextMenu("Test")]

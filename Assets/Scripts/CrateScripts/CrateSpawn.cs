@@ -8,20 +8,42 @@ public class CrateSpawn : MonoBehaviour
     public List<Transform> allPossibleSpawnPoints = new List<Transform>(); // this a list of all the possible tank spawn locations
     private List<Transform> startingAllPossibleSpawnPoints = new List<Transform>();// storing the starting value of all possible spawn points
     public List<GameObject> cratePrefabs = new List<GameObject>(); // a list of all the possible crate prefabs
-    private List<GameObject> allCratesSpawnedIn = new List<GameObject>(); // a list of all the crates spawned in
+    public List<GameObject> allCratesSpawnedIn = new List<GameObject>(); // a list of all the crates spawned in
+    public List<Transform> UsedSpawnPoints = new List<Transform>();
 
     private void OnEnable()
     {
         CrateGameEvents.SpawnCratesEvent += SpawnCrates;
-        CrateGameEvents.OnResetGameEvent += Reset;
-        CrateGameEvents.OnRoundResetEvent += Reset;
+        TankGameEvents.OnResetGameEvent += Reset;
+        TankGameEvents.OnRoundResetEvent += Reset;
     }
 
     private void OnDisable()
     {
         CrateGameEvents.SpawnCratesEvent -= SpawnCrates;
-        CrateGameEvents.OnResetGameEvent -= Reset;
-        CrateGameEvents.OnRoundResetEvent -= Reset;
+        TankGameEvents.OnResetGameEvent -= Reset;
+        TankGameEvents.OnRoundResetEvent -= Reset;
+    }
+
+
+    private void Start()
+    {
+              
+    }
+    bool spawnInProgress = false;
+
+    private void Update()
+    {
+        if(allCratesSpawnedIn.Count < 5 && !spawnInProgress)
+        {
+            Invoke("Replace", 3);
+            spawnInProgress = true;
+        }
+    }
+
+    void Replace()
+    {
+        CrateGameEvents.SpawnCratesEvent?.Invoke(1);
     }
 
     /// <summary>
@@ -57,24 +79,32 @@ public class CrateSpawn : MonoBehaviour
 
     private void SpawnCrates(int NumberToSpawn)
     {
-        if (cratePrefabs.Count >= NumberToSpawn && allPossibleSpawnPoints.Count >= NumberToSpawn)
-        {
+        //if (cratePrefabs.Count >= NumberToSpawn && allPossibleSpawnPoints.Count >= NumberToSpawn)
+        //{
             // we good to go
             for (int i = 0; i < NumberToSpawn; i++)
             {
                 // checking if I have enough unique prefabs so I can spawn different tanks
                 // spawn in a tank prefab, at a random spawn point
                 Transform tempSpawnPoint = startingAllPossibleSpawnPoints[Random.Range(0, startingAllPossibleSpawnPoints.Count)]; // getting a random spawn point
-                GameObject clone = Instantiate(cratePrefabs[i], tempSpawnPoint.position, cratePrefabs[i].transform.rotation);
-                startingAllPossibleSpawnPoints.Remove(tempSpawnPoint); // remove the temp spawn point from our possible spawn point list
-                allCratesSpawnedIn.Add(clone); // keep track of the tank we just spawned in
+                
+                if(tempSpawnPoint != UsedSpawnPoints.Contains(tempSpawnPoint))
+                {
+                    GameObject clone = Instantiate(cratePrefabs[Random.Range(0, cratePrefabs.Count)], tempSpawnPoint.position, Quaternion.identity);
+                    UsedSpawnPoints.Add(tempSpawnPoint); // remove the temp spawn point from our possible spawn point list
+                    allCratesSpawnedIn.Add(clone); // keep track of the tank we just spawned in
+                }
+                
+                
+
             }
-        }
-        else
-        {
-            Debug.LogError("Number of crates to spawn is less than either the number of spawn points, or the number crate prefabs");
-        }
+        //}
+        //else
+        //{
+        //    Debug.LogError("Number of crates to spawn is less than either the number of spawn points, or the number crate prefabs");
+        //}
 
         CrateGameEvents.OnCratesSpawnedEvent?.Invoke(allCratesSpawnedIn); // tell the game that our tanks have been spawned in!
+        spawnInProgress = false;
     }
 }

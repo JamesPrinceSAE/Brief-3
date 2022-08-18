@@ -4,14 +4,18 @@
 
     public class DestroyAfterTime : MonoBehaviour
     {
+
+        
         private void Start()
         {
-            Invoke("DestroySelf", 1.5f);
+            Invoke("DestroySelf", 0.5f);
         }
 
+        
         void DestroySelf()
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
+
     }
 }
