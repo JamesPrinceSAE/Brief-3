@@ -17,6 +17,8 @@ public class Tank : MonoBehaviour
     public TankMovement tankMovement = new TankMovement(); // creating a new instance of our tank movement script
     public TankMainGun tankMainGun = new TankMainGun(); // creating a new instance of our tank main gun script
     public GameObject explosionPrefab; // the prefab we will use when we have 0 left to make it go boom!
+    private float Timer = 0;
+    
 
     private void OnEnable()
     {
@@ -51,6 +53,14 @@ public class Tank : MonoBehaviour
         // passes in the values from our key input, to our motor to make it move
         tankMovement.HandleMovement(tankControls.ReturnKeyValue(TankControls.KeyType.Movement), tankControls.ReturnKeyValue(TankControls.KeyType.Rotation));
         tankMainGun.UpdateMainGun(tankControls.ReturnKeyValue(TankControls.KeyType.Fire)); // grab the input from the fire key
+        if(Timer > 0)
+        {
+            Timer -= Time.deltaTime;
+            if(Timer <= 0)
+            {
+                Timer = 0;
+            }
+        }
     }
 
     /// <summary>
@@ -79,7 +89,7 @@ public class Tank : MonoBehaviour
         }
         else
         {
-            Debug.Log("Damage applied?" + AmountOfDamage);
+            Debug.Log("Damage applied? " + AmountOfDamage);
             tankHealth.ApplyHealthChange(AmountOfDamage);
         }
     }

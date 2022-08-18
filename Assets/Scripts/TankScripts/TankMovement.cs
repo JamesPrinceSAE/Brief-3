@@ -11,6 +11,7 @@ public class TankMovement
 {
     public float speed = 12f; // the speed our tank moves
     public float turnSpeed = 180f; // the speed that we can turn in degrees in seconds.
+    public static bool isBoosting = false;
 
     private TankParticleEffects tankParticleEffects = new TankParticleEffects(); // creating a new instance of our tank particle effects class
     public TankSoundEffects tankSoundEffects = new TankSoundEffects(); // creating a new instance of our tank sound effects class
@@ -89,5 +90,6 @@ public class TankMovement
         // update our rigidboy with this new rotation
         rigidbody.MoveRotation(rigidbody.rotation * turnRotation); // rotate our rigidbody based on our input.
     }
+
 }
 

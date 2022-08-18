@@ -27,6 +27,7 @@ public class TankMainGun
     public AudioClip firingSFX; // a firing weapon SFX.
 
     private bool enableShooting; // should we be allowed to fire?
+    public bool isDamageBuffed = false;
 
     /// <summary>
     /// Sets up all the necessary variables for our main gun script

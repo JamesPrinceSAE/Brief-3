@@ -18,7 +18,6 @@
             wholeCrate.enabled = false;
             boxCollider.enabled = false;
             fracturedCrate.SetActive(true);
-            crashAudioClip.Play();
             CrateSpawn myCrateSpawn = FindObjectOfType<CrateSpawn>();
             myCrateSpawn.allCratesSpawnedIn.Remove(gameObject);
         }
