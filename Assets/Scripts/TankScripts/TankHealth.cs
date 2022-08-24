@@ -16,6 +16,7 @@ public class TankHealth
     public Color fullHealthColour = Color.green; // our full health colour
     public Color zeroHealthColour = Color.red; // colour of no health
     private Transform tankParent; // reference to the tank that this script is attached to
+    private bool isShieldUp = false;
 
     public float CurrentHealth
     {

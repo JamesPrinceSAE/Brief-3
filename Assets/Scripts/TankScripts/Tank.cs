@@ -17,6 +17,8 @@ public class Tank : MonoBehaviour
     public TankMovement tankMovement = new TankMovement(); // creating a new instance of our tank movement script
     public TankMainGun tankMainGun = new TankMainGun(); // creating a new instance of our tank main gun script
     public GameObject explosionPrefab; // the prefab we will use when we have 0 left to make it go boom!
+    public GameObject forceField;
+    public bool isShieldUp = false;
     private float Timer = 0;
     
 
@@ -89,8 +91,16 @@ public class Tank : MonoBehaviour
         }
         else
         {
-            Debug.Log("Damage applied? " + AmountOfDamage);
-            tankHealth.ApplyHealthChange(AmountOfDamage);
+            if(isShieldUp = true)
+            {
+             Debug.Log("Damage blocked by shield!");
+            }
+            else
+            {
+             Debug.Log("Damage applied? " + AmountOfDamage);
+             tankHealth.ApplyHealthChange(AmountOfDamage);
+            }
+            
         }
     }
 

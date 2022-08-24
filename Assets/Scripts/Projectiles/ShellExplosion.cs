@@ -42,6 +42,7 @@ public class ShellExplosion : MonoBehaviour
                 Debug.Log("Target Has No Rigidbody Ignoring");
                 continue; // if there is no rigidbody continue on to the next element, so skip the rest of this code below.
             }
+            elseif(targetRigidbody)
 
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius); // add a force at the point of impact
 
@@ -63,6 +64,7 @@ public class ShellExplosion : MonoBehaviour
     /// <returns></returns>
     private float CalculateDamage(Vector3 targetPosition)
     {
+
         Vector3 explosionToTarget = targetPosition - transform.position; // get the direction of the explosion compared to our main explosion point
         float explosionDistance = explosionToTarget.magnitude; // the length of the explosion target vector
         float relativeDistance = (explosionRadius - explosionDistance) / explosionRadius; // calculate the portoion of the explosion distance that we are engulfed in

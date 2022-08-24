@@ -119,9 +119,9 @@ public class TankGameManager : MonoBehaviour
             UpdateScores();
             TankGameEvents.OnRoundEnededEvent?.Invoke(allTanksSpawnedIn[0].playerNumber);
 
-            // reset our round
-            Invoke("ResetRound", 3f); // after 3 seconds reset our round
-            
+            // reset our lost tank
+            Invoke("Respawn", 3f); // after 3 seconds reset our lost tank
+
         }
 
     }
@@ -166,4 +166,16 @@ public class TankGameManager : MonoBehaviour
 
         yield return null; // this tells our coroutine when the next "frame/update" should occur
     }
+
+    private void Respawn ()
+    {
+        StartCoroutine(KillLogic());
+    }
+
+    private IEnumerator KillLogic()
+    {
+        yield return new WaitForSeconds(1);
+        TankGameEvents.SpawnTanksEvent(1);
+    }
+
 }
