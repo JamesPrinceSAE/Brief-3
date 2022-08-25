@@ -17,9 +17,9 @@ public class Tank : MonoBehaviour
     public TankMovement tankMovement = new TankMovement(); // creating a new instance of our tank movement script
     public TankMainGun tankMainGun = new TankMainGun(); // creating a new instance of our tank main gun script
     public GameObject explosionPrefab; // the prefab we will use when we have 0 left to make it go boom!
-    public GameObject forceField;
-    public bool isShieldUp = false;
-    private float Timer = 0;
+    public float shieldTimer = 0;
+    public bool isBoostOn = false;
+    public float boostTimer = 0;
     
 
     private void OnEnable()
@@ -55,14 +55,30 @@ public class Tank : MonoBehaviour
         // passes in the values from our key input, to our motor to make it move
         tankMovement.HandleMovement(tankControls.ReturnKeyValue(TankControls.KeyType.Movement), tankControls.ReturnKeyValue(TankControls.KeyType.Rotation));
         tankMainGun.UpdateMainGun(tankControls.ReturnKeyValue(TankControls.KeyType.Fire)); // grab the input from the fire key
-        if(Timer > 0)
+
+        
+        if (boostTimer > 0)
         {
-            Timer -= Time.deltaTime;
-            if(Timer <= 0)
+            boostTimer -= Time.deltaTime;
+            if(boostTimer <= 0)
             {
-                Timer = 0;
+                boostTimer = 0;
+                tankMovement.speed = tankMovement.startSpeed;
+                Debug.Log("Boost Off");
             }
         }
+        if (shieldTimer > 0)
+        {
+            shieldTimer -= Time.deltaTime;
+            if (shieldTimer <= 0)
+            {
+                shieldTimer = 0;
+                tankHealth.isShieldUp = false;
+                tankHealth.ForceField.SetActive(false);
+                Debug.Log("Shield Off");
+            }
+        }
+
     }
 
     /// <summary>
@@ -91,7 +107,7 @@ public class Tank : MonoBehaviour
         }
         else
         {
-            if(isShieldUp = true)
+            if(tankHealth.isShieldUp == true)
             {
              Debug.Log("Damage blocked by shield!");
             }

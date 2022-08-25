@@ -42,7 +42,10 @@ public class ShellExplosion : MonoBehaviour
                 Debug.Log("Target Has No Rigidbody Ignoring");
                 continue; // if there is no rigidbody continue on to the next element, so skip the rest of this code below.
             }
-            elseif(targetRigidbody)
+            else if (targetRigidbody)
+            {
+
+            }
 
             targetRigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius); // add a force at the point of impact
 

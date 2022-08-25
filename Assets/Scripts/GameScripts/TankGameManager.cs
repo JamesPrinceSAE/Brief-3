@@ -5,7 +5,7 @@ using UnityEngine;
 public class TankGameManager : MonoBehaviour
 {
 
-    public float preGameWaitTime = 3f;
+    public float preGameWaitTime = 1.5f;
     private List<Tank> allTanksSpawnedIn = new List<Tank>(); // a list of all the tanks that we spawned in
 
     private int playerOneScore;
@@ -16,13 +16,13 @@ public class TankGameManager : MonoBehaviour
     private void OnEnable()
     {
         TankGameEvents.OnTanksSpawnedEvent += TanksSpawned; //add our tanks spawned function
-        TankGameEvents.OnObjectDestroyedEvent += TankDespawned;
+        //TankGameEvents.OnObjectDestroyedEvent += TankDespawned;
     }
 
     private void OnDisable()
     {
         TankGameEvents.OnTanksSpawnedEvent -= TanksSpawned; //add our tanks spawned function
-        TankGameEvents.OnObjectDestroyedEvent -= TankDespawned;
+        //TankGameEvents.OnObjectDestroyedEvent -= TankDespawned;
     }
 
     /// <summary>
@@ -101,10 +101,12 @@ public class TankGameManager : MonoBehaviour
             if ((int)allTanksSpawnedIn[0].playerNumber == 1)
             {
                 playerOneScore++;
+                //spawn other tank in here
             }
             else if ((int)allTanksSpawnedIn[0].playerNumber == 2)
             {
                 playerTwoScore++;
+                //spawn other tank in here
             }
             else if ((int)allTanksSpawnedIn[0].playerNumber == 3)
             {
@@ -117,10 +119,10 @@ public class TankGameManager : MonoBehaviour
 
             // update our score
             UpdateScores();
-            TankGameEvents.OnRoundEnededEvent?.Invoke(allTanksSpawnedIn[0].playerNumber);
+            //TankGameEvents.OnRoundEnededEvent?.Invoke(allTanksSpawnedIn[0].playerNumber);
 
             // reset our lost tank
-            Invoke("Respawn", 3f); // after 3 seconds reset our lost tank
+            //Invoke("Respawn", 3f); // after 3 seconds reset our lost tank
 
         }
 
@@ -138,7 +140,7 @@ public class TankGameManager : MonoBehaviour
     private void ResetRound()
     {
         TankGameEvents.OnRoundResetEvent?.Invoke();
-        TankGameEvents.SpawnTanksEvent(2); // might want to do different things between tank spawed and game started
+        TankGameEvents.SpawnTanksEvent(2); // might want to do different things between tank spawned and game started
         Invoke("BeginRound", 2);
     }
 

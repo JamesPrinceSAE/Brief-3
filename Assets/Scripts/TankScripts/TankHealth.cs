@@ -10,22 +10,29 @@ using UnityEngine.UI;
 public class TankHealth 
 {
     public float minHealth = 0; // our min health
-    public float maxHealth = 1000; // our max health
+    public float maxHealth = 300; // our max health
     private float currentHealth; // our current health
     public bool isDead = true; // is our character alive?
     public Color fullHealthColour = Color.green; // our full health colour
     public Color zeroHealthColour = Color.red; // colour of no health
-    private Transform tankParent; // reference to the tank that this script is attached to
-    private bool isShieldUp = false;
+    private Transform tankParent; // reference to the tank that this script is attached to.
+    public bool isShieldUp = false;
+    public GameObject ForceField;
 
     public float CurrentHealth
     {
+
         get
         {
             return currentHealth; // return our current health
         }
+
         set
         {
+            if(isShieldUp == true)
+            {
+                return;
+            }
             currentHealth = value; // set our currenthealth to the value coming in.
 
             currentHealth = Mathf.Clamp(currentHealth, minHealth, maxHealth); // making sure that what our damage is, it clamps it between 0 and 100

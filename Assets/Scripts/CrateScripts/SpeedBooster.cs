@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class SpeedBooster : MonoBehaviour
 {
-    private float boostDuration = 6f;
-    public TankMovement tankScript;
+
+    public float boostDuration = 3f;
 
     public void Start()
     {
-        tankScript = new TankMovement();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.tag == "Player" && other.name == "Player_01")
+        if (other.tag == "Player" && other.name == "Player_01(Clone)")
         {
-            tankScript.speed = 30f;
+            Tank myTank = other.GetComponent<Tank>();
+            myTank.boostTimer = boostDuration;
+            myTank.tankMovement.speed = myTank.tankMovement.boostSpeed;
+            Debug.Log("Tank1 Boosted");
         }
-        else if (other.tag == "Player" && other.name == "Player_02")
+        else if (other.tag == "Player" && other.name == "Player_02(Clone)")
         {
-
+            Tank myTank = other.GetComponent<Tank>();
+            myTank.boostTimer = boostDuration;
+            myTank.tankMovement.speed = myTank.tankMovement.boostSpeed;
+            Debug.Log("Tank2 Boosted");
         }
     }
 }

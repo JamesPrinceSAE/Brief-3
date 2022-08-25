@@ -79,8 +79,6 @@ public class CrateSpawn : MonoBehaviour
 
     private void SpawnCrates(int NumberToSpawn)
     {
-        //if (cratePrefabs.Count >= NumberToSpawn && allPossibleSpawnPoints.Count >= NumberToSpawn)
-        //{
             // we good to go
             for (int i = 0; i < NumberToSpawn; i++)
             {
@@ -98,11 +96,7 @@ public class CrateSpawn : MonoBehaviour
                 
 
             }
-        //}
-        //else
-        //{
-        //    Debug.LogError("Number of crates to spawn is less than either the number of spawn points, or the number crate prefabs");
-        //}
+        
 
         CrateGameEvents.OnCratesSpawnedEvent?.Invoke(allCratesSpawnedIn); // tell the game that our tanks have been spawned in!
         spawnInProgress = false;
