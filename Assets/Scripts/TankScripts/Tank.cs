@@ -21,7 +21,6 @@ public class Tank : MonoBehaviour
     public bool isBoostOn = false;
     public float boostTimer = 0;
     
-
     private void OnEnable()
     {
         TankGameEvents.OnObjectDestroyedEvent += Dead; // add dead function to the event for when a tank is destroyed
@@ -134,5 +133,9 @@ public class Tank : MonoBehaviour
         GameObject clone = Instantiate(explosionPrefab, transform.position,explosionPrefab.transform.rotation); // spawn in our explosion effect
         Destroy(clone, 2); // just cleaning up our particle effect
         gameObject.SetActive(false); // turn off our tank as we are dead
+
+        // invoke Respawn Event.
+
+
     }
 }

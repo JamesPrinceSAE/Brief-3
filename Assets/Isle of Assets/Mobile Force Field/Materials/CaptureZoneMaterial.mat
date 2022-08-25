@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ForceField_2
+  m_Name: CaptureZoneMaterial
   m_Shader: {fileID: 4800000, guid: c3848e75f32e9db479918b6cce2d209f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -88,7 +88,7 @@ Material:
     - _abc: 0
     - _dfg: 0.515
     m_Colors:
-    - _Color: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MainColor: {r: 0, g: 0.6, b: 0.8, a: 0.6}
   m_BuildTextureStacks: []

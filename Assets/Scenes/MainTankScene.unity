@@ -1238,13 +1238,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f9ec10302d5b124cb4bfb08e1022d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Colour: {r: 0, g: 1, b: 0, a: 1}
-  player2Colour: {r: 1, g: 0, b: 0, a: 1}
-  GoalZone: {fileID: 0}
-  isP1Controlling: 0
-  isP2Controlling: 0
-  isP1ControlFull: 0
-  isP2ControlFull: 0
+  MaxCaptureAmount: 10
+  ZoneCaptureAmountPerSecond: 1
+  TimeBetweenCaptureTicks: 1
+  currentCaptureScore: 0
 --- !u!136 &336065564
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5370,7 +5367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474099803}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 9.61, z: 0}
+  m_LocalPosition: {x: 0, y: 9.77, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6165,7 +6162,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547203217}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: -0.38, y: 3.64, z: 0.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7561,6 +7558,7 @@ GameObject:
   - component: {fileID: 1996285171}
   - component: {fileID: 1996285174}
   - component: {fileID: 1996285173}
+  - component: {fileID: 1996285175}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7716,6 +7714,21 @@ MonoBehaviour:
     playerText: {fileID: 1218714005}
   - playerReferenceNumber: 4
     playerText: {fileID: 1257686463}
+--- !u!114 &1996285175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1996285170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c390abdf6b989424b8d444b93b9d7b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SliderP1: {fileID: 1861852871}
+  SliderP2: {fileID: 2138313029}
+  myGoalManager: {fileID: 336065563}
 --- !u!1 &2015500199 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: a0c6429096b1c9846805eb1d2c3c4962,

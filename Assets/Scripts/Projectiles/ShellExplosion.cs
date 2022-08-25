@@ -15,7 +15,7 @@ public class ShellExplosion : MonoBehaviour
     // is called when the trigger hits an object
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform == transform)
+        if (other.transform == transform || other.GetComponent<GoalZoneManager>())
         {
             // if we some how hit ourselves or another bullet
             // ignore it

@@ -169,7 +169,7 @@ public class TankGameManager : MonoBehaviour
         yield return null; // this tells our coroutine when the next "frame/update" should occur
     }
 
-    private void Respawn ()
+    private void Respawn()
     {
         StartCoroutine(KillLogic());
     }
